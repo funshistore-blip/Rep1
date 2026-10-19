@@ -1,0 +1,42 @@
+Project Specification: Luxury Todo List
+1. Project Overview
+Project name: Luxury Todo List  
+Type: Front-end web application  
+Purpose: Help users organize and track personal tasks through a simple, attractive interface.
+2. Objectives
+Make it easy to create, update, complete, and remove tasks.
+Help users organize work using due dates and task filters.
+Preserve tasks and theme preferences between browser visits.
+Provide a polished, responsive interface with a luxury sticky-note visual style.
+3. Core Requirements
+Functional requirements
+Users can add a task with an optional due date.
+Users can edit and delete existing tasks.
+Users can mark tasks as completed or active.
+Users can filter tasks by All, Active, and Completed.
+The interface displays remaining and completed task counts.
+Due-date indicators identify tasks due today or overdue.
+Tasks persist in browser `localStorage`.
+Users can switch between light and dark themes, with the preference saved locally.
+Design requirements
+Sticky-note cards use soft pastel colors, subtle rotation, and shadows.
+Hover interactions provide gentle visual feedback.
+The layout adapts to desktop and mobile screen sizes.
+Text and controls remain readable and usable in both themes.
+4. Technology Stack
+HTML5: content and structure
+CSS3: layout, visual design, responsive behavior, and themes
+JavaScript: task logic, DOM updates, filtering, dates, and persistence
+Browser localStorage: local data persistence
+5. Scope and Constraints
+The application runs in a modern web browser.
+No backend, account system, or cloud synchronization is included.
+Tasks are stored only in the current browser's local storage and are not automatically shared across devices.
+Clearing browser storage may remove saved tasks.
+6. Acceptance Criteria
+The project is considered successful when users can add, edit, complete, delete, and filter tasks; assign optional due dates; see task counts and due-date indicators; switch themes; and retain saved data after refreshing the page. The interface should display the sticky-note design and adapt to smaller screens.
+7. Possible Future Enhancements
+Search and priority labels
+Drag-and-drop sorting
+Export/import functionality
+Optional cloud synchronization and user accounts
