@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Todo List</title>
+
+    <link rel="stylesheet" href="td.css">
+    <script src="td.js" defer></script>
+</head>
+
+<body>
+    <main class="todo-container">
+
+        <header class="app-header">
+            <div>
+                <h1>My Todo List</h1>
+                <p class="subtitle">Plan your day, one task at a time.</p>
+            </div>
+
+            <button
+                type="button"
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Switch to dark mode"
+            >
+                🌙 Dark
+            </button>
+        </header>
+
+        <!-- Add or edit tasks -->
+        <form id="todo-form">
+            <label for="todo-input">Task description</label>
+
+            <input
+                type="text"
+                id="todo-input"
+                placeholder="What do you need to do?"
+                maxlength="200"
+                autocomplete="off"
+                required
+            >
+
+            <label for="todo-due-date">Due date (optional)</label>
+
+            <input
+                type="date"
+                id="todo-due-date"
+            >
+
+            <div class="form-buttons">
+                <button type="submit" id="submit-btn">
+                    Add Task
+                </button>
+
+                <button
+                    type="button"
+                    id="cancel-edit-btn"
+                    hidden
+                >
+                    Cancel Edit
+                </button>
+            </div>
+        </form>
+
+        <!-- Task statistics -->
+        <section class="task-stats" aria-label="Task statistics">
+            <p id="task-counter" aria-live="polite">0 tasks remaining</p>
+            <p id="completion-counter">0 completed</p>
+        </section>
+
+        <!-- Task filters -->
+        <nav class="filters" aria-label="Filter tasks">
+            <button
+                type="button"
+                class="filter-btn active"
+                data-filter="all"
+                aria-pressed="true"
+            >
+                All
+            </button>
+
+            <button
+                type="button"
+                class="filter-btn"
+                data-filter="active"
+                aria-pressed="false"
+            >
+                Active
+            </button>
+
+            <button
+                type="button"
+                class="filter-btn"
+                data-filter="completed"
+                aria-pressed="false"
+            >
+                Completed
+            </button>
+        </nav>
+
+        <!-- Tasks appear here -->
+        <ul id="todo-list"></ul>
+
+        <p id="empty-message">
+            No tasks yet. Add your first task!
+        </p>
+
+        <p id="no-filter-results" hidden>
+            No tasks match this filter.
+        </p>
+
+    </main>
+</body>
+</html>

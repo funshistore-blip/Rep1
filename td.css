@@ -1,0 +1,598 @@
+/* =========================
+   1. General styling
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light;
+
+    --page-bg: #f4f7fc;
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --task-bg: #f8f9fa;
+    --text-color: #333333;
+    --muted-color: #777777;
+    --border-color: #dddddd;
+    --primary-color: #4a90e2;
+    --primary-hover: #357abd;
+    --danger-color: #e74c3c;
+    --danger-hover: #c0392b;
+    --success-color: #218838;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text-color);
+
+    margin: 0;
+    padding: 20px;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* =========================
+   2. Dark mode
+========================= */
+
+body.dark-mode {
+    color-scheme: dark;
+
+    --page-bg: #121826;
+    --card-bg: #1e293b;
+    --input-bg: #111827;
+    --task-bg: #263449;
+    --text-color: #f1f5f9;
+    --muted-color: #b0bdcc;
+    --border-color: #475569;
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --danger-color: #dc4545;
+    --danger-hover: #b91c1c;
+    --success-color: #22a447;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================
+   3. Main container
+========================= */
+
+.todo-container {
+    width: 100%;
+    max-width: 600px;
+
+    margin-top: 30px;
+    padding: 30px;
+
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+
+    transition: background-color 0.2s;
+}
+
+/* =========================
+   4. Header
+========================= */
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+
+.subtitle {
+    margin: 0;
+    color: var(--muted-color);
+    font-size: 14px;
+}
+
+.theme-toggle {
+    flex-shrink: 0;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    background-color: var(--task-bg);
+    color: var(--text-color);
+
+    cursor: pointer;
+}
+
+/* =========================
+   5. Form
+========================= */
+
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+#todo-form label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#todo-input,
+#todo-due-date {
+    width: 100%;
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    background-color: var(--input-bg);
+    color: var(--text-color);
+
+    font-size: 15px;
+}
+
+#todo-input:focus,
+#todo-due-date:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 1px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 5px;
+}
+
+#submit-btn,
+#cancel-edit-btn {
+    padding: 11px 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#submit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+#cancel-edit-btn {
+    background-color: var(--task-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* =========================
+   6. Task statistics
+========================= */
+
+.task-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 12px 0;
+
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.task-stats p {
+    margin: 0;
+    color: var(--muted-color);
+    font-size: 14px;
+}
+
+/* =========================
+   7. Filters
+========================= */
+
+.filters {
+    display: flex;
+    gap: 8px;
+
+    margin: 20px 0;
+}
+
+.filter-btn {
+    padding: 9px 14px;
+
+    background-color: var(--task-bg);
+    color: var(--text-color);
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* =========================
+   8. Task list
+========================= */
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 14px;
+    margin-bottom: 10px;
+
+    background-color: var(--task-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.todo-checkbox {
+    width: 18px;
+    height: 18px;
+
+    margin-top: 3px;
+    flex-shrink: 0;
+
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.todo-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.todo-text {
+    display: block;
+
+    color: var(--text-color);
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: var(--muted-color);
+}
+
+.todo-date {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--muted-color);
+    font-size: 12px;
+}
+
+.todo-date.overdue {
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+.todo-date.due-today {
+    color: #c47b00;
+    font-weight: bold;
+}
+
+.dark-mode .todo-date.due-today {
+    color: #fbbf24;
+}
+
+/* =========================
+   9. Task action buttons
+========================= */
+
+.todo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 7px 10px;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.edit-btn {
+    background-color: var(--success-color);
+}
+
+.delete-btn {
+    background-color: var(--danger-color);
+}
+
+.edit-btn:hover {
+    filter: brightness(0.9);
+}
+
+.delete-btn:hover {
+    background-color: var(--danger-hover);
+}
+
+/* =========================
+   10. Empty states
+========================= */
+
+#empty-message,
+#no-filter-results {
+    text-align: center;
+    color: var(--muted-color);
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    margin-top: 25px;
+}
+
+/* =========================
+   11. Mobile responsiveness
+========================= */
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .todo-container {
+        margin-top: 10px;
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .theme-toggle {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .task-stats p {
+        font-size: 12px;
+    }
+
+    .filters {
+        gap: 5px;
+    }
+
+    .filter-btn {
+        flex: 1;
+        padding: 9px 5px;
+        font-size: 12px;
+    }
+
+    .todo-item {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .todo-actions {
+        flex-direction: column;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        padding: 7px;
+    }
+}
+/* ===================================
+   LUXURY STICKY NOTE DESIGN
+   =================================== */
+
+/* Sticky-note grid */
+#todo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 30px;
+    padding: 25px 12px;
+    list-style: none;
+}
+
+/* Base sticky-note card */
+#todo-list .todo-item {
+    position: relative;
+    min-height: 170px;
+    padding: 25px 20px;
+    border: none;
+    border-radius: 3px 3px 12px 3px;
+
+    background: linear-gradient(
+        135deg,
+        #fff5c7 0%,
+        #f9e6a0 100%
+    );
+
+    box-shadow:
+        2px 4px 8px rgba(50, 35, 10, 0.08),
+        5px 14px 25px rgba(50, 35, 10, 0.16);
+
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+    overflow-wrap: anywhere;
+}
+
+/* Alternate sticky-note colors and rotations */
+#todo-list .todo-item:nth-child(4n + 2) {
+    background: linear-gradient(135deg, #ffe3e7, #f5cbd3);
+    transform: rotate(2deg);
+}
+
+#todo-list .todo-item:nth-child(4n + 3) {
+    background: linear-gradient(135deg, #dff3ff, #c5e4f7);
+    transform: rotate(-1deg);
+}
+
+#todo-list .todo-item:nth-child(4n + 4) {
+    background: linear-gradient(135deg, #eee2ff, #d9c7f2);
+    transform: rotate(1.5deg);
+}
+
+/* Hover animation */
+#todo-list .todo-item:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.02);
+
+    box-shadow:
+        3px 8px 15px rgba(50, 35, 10, 0.10),
+        8px 22px 35px rgba(50, 35, 10, 0.20);
+
+    z-index: 5;
+}
+
+/* Task description */
+#todo-list .todo-text {
+    color: #382e28;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* Due date */
+#todo-list .todo-date {
+    margin-top: 14px;
+    color: #75604d;
+    font-size: 0.85rem;
+}
+
+/* Overdue and due-today indicators */
+#todo-list .todo-date.overdue {
+    color: #a32929;
+    font-weight: 700;
+}
+
+#todo-list .todo-date.due-today {
+    color: #8a6210;
+    font-weight: 700;
+}
+
+/* Task action buttons */
+#todo-list .todo-actions button {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 11px;
+    margin: 8px 4px 0 0;
+    background: rgba(255, 255, 255, 0.55);
+    color: #44362d;
+    cursor: pointer;
+    transition: background 0.2s ease,
+                transform 0.2s ease;
+}
+
+#todo-list .todo-actions button:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+}
+
+/* Completed notes */
+#todo-list .todo-item:has(.todo-checkbox:checked) {
+    opacity: 0.72;
+    filter: saturate(0.75);
+}
+
+/* Dark-mode notes */
+.dark-mode #todo-list .todo-item {
+    background: linear-gradient(135deg, #37332d, #292621);
+    box-shadow:
+        2px 5px 10px rgba(0, 0, 0, 0.25),
+        5px 15px 28px rgba(0, 0, 0, 0.35);
+}
+
+.dark-mode #todo-list .todo-item:nth-child(4n + 2) {
+    background: linear-gradient(135deg, #49333a, #33262b);
+}
+
+.dark-mode #todo-list .todo-item:nth-child(4n + 3) {
+    background: linear-gradient(135deg, #293d4b, #25313b);
+}
+
+.dark-mode #todo-list .todo-item:nth-child(4n + 4) {
+    background: linear-gradient(135deg, #40334f, #30283b);
+}
+
+.dark-mode #todo-list .todo-text {
+    color: #f8efe4;
+}
+
+.dark-mode #todo-list .todo-date {
+    color: #d0c0b0;
+}
+
+.dark-mode #todo-list .todo-actions button {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8efe4;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    #todo-list {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    #todo-list .todo-item {
+        transform: rotate(-1deg);
+    }
+
+    #todo-list .todo-item:hover {
+        transform: translateY(-4px);
+    }
+}
